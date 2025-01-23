@@ -2,6 +2,9 @@ import React from 'react';
 import { Breadcrumb } from 'antd';
 import { Link, useLocation, matchPath } from 'react-router-dom';
 import { routes } from '../../routes/AppRoutes';
+import {
+  HomeOutlined,
+} from '@ant-design/icons';
 
 const BreadcrumbComponent: React.FC = () => {
   const location = useLocation();
@@ -19,10 +22,12 @@ const BreadcrumbComponent: React.FC = () => {
   });
 
   return (
-    <>
-      <Breadcrumb items={[{ title: "Home", href:"/" }]} />
+    <div className='w-full flex items-center justify-start'>
+      <Link to="/">
+        <HomeOutlined />
+      </Link>
       {breadcrumbItems}
-    </>
+    </div>
   );
 };
 
