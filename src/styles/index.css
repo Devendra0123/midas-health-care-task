@@ -2,13 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1))
 }
 
 code {
@@ -21,20 +28,48 @@ code {
 }
 
 
-header {
-  background-color: #fff;
-  position: fixed;
-  top: 0;
-  width: 100%;
+.header {
   text-align: center;
   transition: transform 0.3s ease-in-out;
   z-index: 1000;
 }
 
 .nav-up {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0px;
   transform: translateY(-100%);
 }
 
 .nav-down {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0px;
   transform: translateY(0);
+}
+
+.ant-tabs-tab {
+  background-color: white !important;
+}
+
+.ant-tabs-tab-active {
+  background-color: #524F91 !important;
+  color: #fff !important;
+  outline: none !important;
+}
+
+.ant-breadcrumb ol {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap; /* Prevent wrapping of breadcrumb items */
+  overflow: hidden; /* Hide overflowing content */
+}
+
+.ant-breadcrumb li {
+  max-width: 150px; /* Set a max width for each breadcrumb item */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide text that overflows */
+  text-overflow: ellipsis; /* Add ellipsis (...) for truncated text */
 }

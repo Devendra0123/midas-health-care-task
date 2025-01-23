@@ -1,9 +1,12 @@
 import React from 'react';
 import { Input } from 'antd';
+import {
+  SearchOutlined
+} from "@ant-design/icons"
 
 interface SearchBarProps {
-  onSearch: (query: string) => void; // Callback function for search
-  placeholder?: string; // Placeholder text
+  onSearch: (query: string) => void;
+  placeholder?: string; 
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch, placeholder }) => {
@@ -11,9 +14,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, placeholder }) => {
     <div className="mb-4">
       <Input
         placeholder={placeholder || 'Search...'}
-        onChange={(e) => onSearch(e.target.value)} // Trigger search on input change
+        onChange={(e) => onSearch(e.target.value)}
         allowClear
-        prefix={<i className="fas fa-search" />} // Optional search icon
+        prefix={<SearchOutlined className='' />}
+        className='font-normal py-2'
       />
     </div>
   );

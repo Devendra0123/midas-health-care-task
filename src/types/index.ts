@@ -67,9 +67,12 @@ export interface FilterState {
   }
 
   export interface SummaryCardData {
-    title: string
-    value: string | number
-    icon: React.ComponentType<AntdIconProps> | null
+    title1: string
+    value1: string | number
+    title2?: string
+    value2?: string | number
+    icon1: React.ComponentType<AntdIconProps> | null
+    icon2?: React.ComponentType<AntdIconProps> | null
     additionalInfo?: string | number
     tooltip?: string
   }

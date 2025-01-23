@@ -5,41 +5,42 @@ import {
   HomeOutlined,
   FileOutlined,
   ExclamationCircleOutlined,
+  InfoCircleOutlined
 } from "@ant-design/icons"
 import type { SummaryCardData } from "../types"
 
 export const summaryCards: SummaryCardData[] = [
   {
-    title: "New Patients",
-    value: 20,
-    icon: UserOutlined,
+    title1: "New Patients",
+    value1: 20,
+    icon1: UserOutlined,
   },
   {
-    title: "Average Wait Time",
-    value: "25 min",
-    icon: ClockCircleOutlined,
+    title1: "Average Wait Time",
+    value1: "25 min",
+    icon1: ClockCircleOutlined,
     tooltip: "Average time patients spend in the queue",
+    icon2: InfoCircleOutlined,
+    additionalInfo: "Average waiting time is 25 minutes",
   },
   {
-    title: "Patients in Queue",
-    value: 10,
-    icon: HomeOutlined,
+    title1: "Patients in Queue",
+    value1: 10,
+    icon1: HomeOutlined,
+    title2: "Queue No.",
+    value2: "11-20",
   },
   {
-    title: "Queue No.",
-    value: "11-20",
-    icon: null,
+    title1: "Cancellations",
+    value1: 2,
+    icon1: FileOutlined,
   },
   {
-    title: "Cancellations",
-    value: 2,
-    icon: FileOutlined,
-  },
-  {
-    title: "Urgent Cases",
-    value: 10,
-    icon: ExclamationCircleOutlined,
-    additionalInfo: "4,7,12",
+    title1: "Urgent Cases",
+    value1: 10,
+    icon1: ExclamationCircleOutlined,
+    title2: "Queue No.",
+    value2: "4,7,2",
   },
 ]
 

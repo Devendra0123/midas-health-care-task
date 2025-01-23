@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Table, Button, Tooltip, Modal } from 'antd';
+import { Table, Button, Tooltip, Modal, Descriptions } from 'antd';
 import { Patient } from '../../types';
+import { LuEye } from "react-icons/lu";
+import { IoIosArrowDown } from "react-icons/io";
+import { formatDate } from '../../utils/formatDate';
 
 interface PatientTableProps {
   patients: Patient[];
@@ -27,11 +30,26 @@ const PatientTable: React.FC<PatientTableProps> = ({
     patientName: '',
   });
 
+  const [detailModal, setDetailModal] = useState<{
+    visible: boolean;
+    patient: Patient | null;
+  }>({
+    visible: false,
+    patient: null,
+  });
+
   const handleViewPreviousRecords = (patient: Patient) => {
     setPreviousRecordsModal({
       visible: true,
       records: patient.previousRecords,
       patientName: patient.name,
+    });
+  };
+
+  const handleViewDetails = (patient: Patient) => {
+    setDetailModal({
+      visible: true,
+      patient,
     });
   };
 
@@ -43,12 +61,24 @@ const PatientTable: React.FC<PatientTableProps> = ({
     });
   };
 
+  const handleDetailModalClose = () => {
+    setDetailModal({
+      visible: false,
+      patient: null,
+    });
+  };
+
   const columns = [
     { title: 'S.N.', dataIndex: 'serialNumber', key: 'serialNumber' },
     { title: 'UHID', dataIndex: 'uhid', key: 'uhid' },
     { title: 'Patient Name', dataIndex: 'name', key: 'name' },
-    { title: 'Age/Gender', render: (record: Patient) => `${record.age} / ${record.gender}` },
-    { title: 'Billing Date & Time', dataIndex: 'billingDateTime', key: 'billingDateTime' },
+    { title: 'Age/Gender', render: (record: Patient) => `${record.age} Yrs / ${record.gender}` },
+    {
+      title: 'Billing Date & Time',
+      dataIndex: 'billingDateTime',
+      key: 'billingDateTime',
+      render: (date: string) => formatDate(date)
+    },
     { title: 'Department', render: (record: Patient) => record.department.name },
     { title: 'Doctor', render: (record: Patient) => record.doctor.name },
     { title: 'Queue No.', dataIndex: 'queueNumber', key: 'queueNumber' },
@@ -59,24 +89,48 @@ const PatientTable: React.FC<PatientTableProps> = ({
         <Tooltip title="View Previous Records">
           <Button
             onClick={() => handleViewPreviousRecords(record)}
-            type="link"
             disabled={!record.previousRecords.length}
+            className="w-[70px]"
           >
-            {record.previousRecords.length > 0
-              ? `View (${record.previousRecords.length})`
-              : 'None'}
+            {record.previousRecords.length > 0 ? (
+              <span className="flex items-center gap-2 bg-white">
+                {record.previousRecords.length}
+                <IoIosArrowDown />
+              </span>
+            ) : (
+              <span>0</span>
+            )}
           </Button>
         </Tooltip>
       ),
     },
-    { title: 'Status', dataIndex: 'status', key: 'status' },
+    {
+      title: 'Status',
+      key: 'status',
+      render: ({ status }: Patient) => (
+        <div
+          className={`${status === 'New'
+            ? 'border border-teal text-teal'
+            : status === 'Follow Up'
+              ? 'border border-orange text-orange'
+              : status === 'Free'
+                ? 'border border-purple text-purple'
+                : 'border border-blue-500 text-blue-500'
+            } flex items-center justify-center rounded-xl text-nowrap px-2 py-1`}
+        >
+          {status}
+        </div>
+      ),
+    },
     {
       title: 'Action',
       key: 'action',
       render: (record: Patient) => (
-        <Button type="link" onClick={() => console.log(`View details for ${record.name}`)}>
-          View Details
-        </Button>
+        <Tooltip title="View details">
+          <Button onClick={() => handleViewDetails(record)}>
+            <LuEye />
+          </Button>
+        </Tooltip>
       ),
     },
   ];
@@ -94,11 +148,23 @@ const PatientTable: React.FC<PatientTableProps> = ({
           onChange: onPageChange,
           showSizeChanger: false,
         }}
+        rowClassName={(_, index) =>
+          index % 2 === 0 ? 'bg-white' : 'bg-gray-100'
+        }
+        className="max-w-full overflow-x-auto "
+        footer={() => (
+          <div className="flex justify-between items-center">
+            <div>
+              Showing {Math.min((currentPage - 1) * pageSize + 1, total)} to{' '}
+              {Math.min(currentPage * pageSize, total)} of {total} entries
+            </div>
+          </div>
+        )}
       />
 
       {/* Previous Records Modal */}
       <Modal
-        visible={previousRecordsModal.visible}
+        open={previousRecordsModal.visible}
         title={`Previous Records - ${previousRecordsModal.patientName}`}
         onCancel={handleModalClose}
         footer={null}
@@ -109,13 +175,40 @@ const PatientTable: React.FC<PatientTableProps> = ({
             ...record,
           }))}
           columns={[
-            { title: 'Date', dataIndex: 'date', key: 'date' },
+            { title: 'Date', dataIndex: 'date', key: 'date', render: (date: string) => formatDate(date) },
             { title: 'Department', dataIndex: 'department', key: 'department' },
             { title: 'Doctor', dataIndex: 'doctor', key: 'doctor' },
             { title: 'Status', dataIndex: 'status', key: 'status' },
           ]}
           pagination={false}
         />
+      </Modal>
+
+      {/* Patient Detail Modal */}
+      <Modal
+        open={detailModal.visible}
+        title="Patient Details"
+        onCancel={handleDetailModalClose}
+        footer={null}
+      >
+        {detailModal.patient && (
+          <Descriptions bordered column={1}>
+            <Descriptions.Item label="UHID">{detailModal.patient.uhid}</Descriptions.Item>
+            <Descriptions.Item label="Name">{detailModal.patient.name}</Descriptions.Item>
+            <Descriptions.Item label="Age / Gender">
+              {`${detailModal.patient.age} / ${detailModal.patient.gender}`}
+            </Descriptions.Item>
+            <Descriptions.Item label="Billing Date & Time">
+              {formatDate(detailModal.patient.billingDateTime)}
+            </Descriptions.Item>
+            <Descriptions.Item label="Department">
+              {detailModal.patient.department.name}
+            </Descriptions.Item>
+            <Descriptions.Item label="Doctor">{detailModal.patient.doctor.name}</Descriptions.Item>
+            <Descriptions.Item label="Queue Number">{detailModal.patient.queueNumber}</Descriptions.Item>
+            <Descriptions.Item label="Status">{detailModal.patient.status}</Descriptions.Item>
+          </Descriptions>
+        )}
       </Modal>
     </>
   );

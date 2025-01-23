@@ -11,8 +11,6 @@ const PatientContext = createContext<PatientContextType | undefined>(undefined);
 export const PatientProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [patients, setPatients] = useState<Patient[]>([]);
 
-  console.log(patients); // Debugging the current state of patients
-
   // Add multiple patients, ensuring no duplicates
   const addPatients = useCallback((newPatients: Patient[]) => {
     setPatients((prev) => {
