@@ -19,18 +19,22 @@ export const dummyDepartments: Department[] = [
 const generatePreviousRecords = (count: number): Patient['previousRecords'] =>
   Array.from({ length: count }).map((_, index) => ({
     date: `2024-12-${12 - index}`,
-    department: dummyDepartments[index % dummyDepartments.length].name,
-    doctor: dummyDoctors[index % dummyDoctors.length].name,
+    department: dummyDepartments[Math.floor(Math.random() * dummyDepartments.length)].name,
+    doctor: dummyDoctors[Math.floor(Math.random() * dummyDoctors.length)].name,
     status: index % 2 === 0 ? 'Follow Up' : 'New',
   }));
 
+// Helper function to get a random item from an array
+const getRandomItem = <T>(array: T[]): T => array[Math.floor(Math.random() * array.length)];
+
+// Helper function to generate random status
+const getRandomStatus = (): 'New' | 'Follow Up' | 'Free' => {
+  const statuses: ('New' | 'Follow Up' | 'Free')[] = ['New', 'Follow Up', 'Free'];
+  return getRandomItem(statuses);
+};
+
 // Generate patients for a specific tab
-const generatePatients = (
-  count: number,
-  status: 'New' | 'Follow Up' | 'Free',
-  departmentIndex: number,
-  doctorIndex: number
-): Patient[] =>
+const generatePatients = (count: number): Patient[] =>
   Array.from({ length: count }).map((_, index) => ({
     id: index + 1,
     serialNumber: index + 1,
@@ -41,23 +45,17 @@ const generatePatients = (
     billingDateTime: `2025-01-${Math.floor(Math.random() * 30) + 1}T${
       Math.floor(Math.random() * 10) + 8
     }:30:00Z`,
-    department: dummyDepartments[departmentIndex % dummyDepartments.length],
-    doctor: dummyDoctors[doctorIndex % dummyDoctors.length],
+    department: getRandomItem(dummyDepartments),
+    doctor: getRandomItem(dummyDoctors),
     queueNumber: index + 1,
-    previousRecord: index % 2 === 0, // Some patients have previous records
-    previousRecords: index % 2 === 0 ? generatePreviousRecords(2) : [], // Generate 2 records if previousRecord is true
-    status,
-    urgent: index % 3 === 0, // Some patients are marked as urgent
+    previousRecord: Math.random() > 0.5, // Randomly decide if the patient has previous records
+    previousRecords: Math.random() > 0.5 ? generatePreviousRecords(2) : [], // Generate previous records randomly
+    status: getRandomStatus(),
+    urgent: Math.random() > 0.7, // Randomly mark some patients as urgent
   }));
 
-// New Patients
-export const newPatients = generatePatients(10, 'New', 0, 0);
-
-// Nurse Seen
-export const nurseSeenPatients = generatePatients(10, 'Follow Up', 1, 1);
-
-// Doctor Visited
-export const doctorVisitedPatients = generatePatients(10, 'New', 2, 2);
-
-// Appointment
-export const appointmentPatients = generatePatients(10, 'Free', 3, 0);
+// Generate patients for each tab
+export const newPatients = generatePatients(30);
+export const nurseSeenPatients = generatePatients(30);
+export const doctorVisitedPatients = generatePatients(30);
+export const appointmentPatients = generatePatients(30);

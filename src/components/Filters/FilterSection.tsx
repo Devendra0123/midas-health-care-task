@@ -1,13 +1,12 @@
 import React, { useCallback } from 'react';
 import { DatePicker, Select, Button } from 'antd';
 import { FilterState, Doctor } from '../../types';
-import moment from 'moment';
 
 interface FilterSectionProps {
-  filters: FilterState; // Controlled filter state
-  onFilterChange: (filters: FilterState) => void; // Callback to update filters in the parent
-  activeTab: string; // Current active tab
-  doctors: Doctor[]; // List of doctors for the dropdown
+  filters: FilterState; 
+  onFilterChange: (filters: FilterState) => void; 
+  activeTab: string; 
+  doctors: Doctor[]; 
 }
 
 const FilterSection: React.FC<FilterSectionProps> = ({
@@ -21,7 +20,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
     (type: 'fromDate' | 'toDate', value: any) => {
       onFilterChange({
         ...filters,
-        [type]: value ? value.format('YYYY-MM-DD') : undefined, // Convert date to ISO format
+        [type]: value ? value : undefined, 
       });
     },
     [filters, onFilterChange]
@@ -45,7 +44,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
         {/* From Date */}
         <DatePicker
           placeholder="From Date"
-          value={filters.fromDate ? moment(filters.fromDate) : null}
+          value={filters.fromDate ? filters.fromDate : null}
           onChange={(value) => handleDateChange('fromDate', value)}
           className="w-full"
         />
@@ -53,7 +52,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
         {/* To Date */}
         <DatePicker
           placeholder="To Date"
-          value={filters.toDate ? moment(filters.toDate) : null}
+          value={filters.toDate ? filters.toDate : null}
           onChange={(value) => handleDateChange('toDate', value)}
           className="w-full"
         />
