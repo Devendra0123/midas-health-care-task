@@ -47,16 +47,13 @@ A **Clinical Management Dashboard** designed for managing patient data efficient
 
 ## Installation
 
-### Prerequisites
-- **Node.js** and **npm** installed. You can download them from [Node.js Official Website](https://nodejs.org/).
-
 ### Steps
 
 1. **Clone the repository:**
 
     ```bash
     git clone https://github.com/Devendra0123/midas-health-care-task.git
-    cd clinical-management-dashboard
+    cd midas-health-care-task
     ```
 
 2. **Install dependencies:**
