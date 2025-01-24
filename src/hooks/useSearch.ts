@@ -3,7 +3,7 @@ import { Patient } from '../types';
 
 export const useSearch = (data: Patient[], query: string) => {
   const filteredData = useMemo(() => {
-    if (!query.trim()) return data; // Return all data if query is empty
+    if (!query.trim()) return data; 
 
     const lowerQuery = query.toLowerCase();
 

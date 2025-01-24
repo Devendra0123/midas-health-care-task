@@ -8,7 +8,6 @@ import { IoIosArrowForward } from "react-icons/io";
 const BreadcrumbComponent: React.FC = () => {
   const location = useLocation();
 
-  // Extract path segments
   const pathSegments = location.pathname.split('/').filter(Boolean);
 
   // Generate breadcrumb items
@@ -24,9 +23,8 @@ const BreadcrumbComponent: React.FC = () => {
         title: <Link to={path}>{route.breadcrumb}</Link>,
       };
     })
-    .filter(Boolean); // Remove null values
+    .filter(Boolean); 
 
-  // Add home icon as the first breadcrumb
   breadcrumbItems.unshift({
     key: '/',
     title: (
@@ -38,8 +36,8 @@ const BreadcrumbComponent: React.FC = () => {
 
   return (
     <Breadcrumb
-      separator={<IoIosArrowForward />} // Add arrow icon as separator
-      items={breadcrumbItems as any} // Type assertion to resolve TS type issue
+      separator={<IoIosArrowForward />} 
+      items={breadcrumbItems as any} 
       className='flex items-center'
     />
   );

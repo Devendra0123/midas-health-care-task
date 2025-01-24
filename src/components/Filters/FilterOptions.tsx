@@ -3,7 +3,7 @@ import { Select } from 'antd';
 import { IoFilterOutline } from "react-icons/io5";
 
 interface FilterOptionProps {
-  setFilterOptions: (selectedOptions: string[]) => void; // Updated type
+  setFilterOptions: (selectedOptions: string[]) => void;
 }
 
 const FilterOptions: React.FC<FilterOptionProps> = ({ setFilterOptions }) => {

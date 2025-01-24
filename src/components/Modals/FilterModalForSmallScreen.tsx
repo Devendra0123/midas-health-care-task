@@ -32,12 +32,12 @@ const FilterModalForSmallScreen: React.FC<FilterModalForSmallScreenProps> = ({
   const [localFilters, setLocalFilters] = useState<FilterState>(filters);
 
   const handleFilterChange = (updatedFilters: FilterState) => {
-    setLocalFilters(updatedFilters); // Update local filters
+    setLocalFilters(updatedFilters);
   };
 
   const handleApplyFilters = () => {
-    onFilterChange(localFilters); // Apply filters only when "Filter Data" is clicked
-    handleCancel(); // Close the modal
+    onFilterChange(localFilters);
+    handleCancel(); 
   };
 
   return (
@@ -57,8 +57,8 @@ const FilterModalForSmallScreen: React.FC<FilterModalForSmallScreenProps> = ({
 
       <div>
         <FilterSection
-          filters={localFilters} // Pass localFilters instead of global filters
-          onFilterChange={handleFilterChange} // Update localFilters instead of triggering global filter change
+          filters={filters} 
+          onFilterChange={(data)=> handleFilterChange(data)} 
           activeTab={activeTab}
           doctors={doctors}
           filterOptions={filterOptions}

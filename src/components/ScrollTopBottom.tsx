@@ -7,7 +7,6 @@ import { UpOutlined } from '@ant-design/icons';
 const ScrollToTopButton: React.FC = () => {
     const [visible, setVisible] = useState(false);
 
-    // Show button when user scrolls down more than the viewport height
     useEffect(() => {
         const toggleVisibility = () => {
             if (window.scrollY > window.innerHeight) {
@@ -24,11 +23,10 @@ const ScrollToTopButton: React.FC = () => {
         };
     }, []);
 
-    // Scroll smoothly to the top
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth', // Smooth scroll
+            behavior: 'smooth',
         });
     };
 

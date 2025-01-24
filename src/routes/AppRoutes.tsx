@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { Breadcrumb, Spin } from 'antd';
+import { Spin } from 'antd';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import NotFound from '../pages/NotFound';
 
@@ -13,19 +13,10 @@ export const routes = [
 ];
 
 const AppRoutes: React.FC = () => {
-  const [loading, setLoading] = useState(true); // State to manage loader
+  const [loading, setLoading] = useState(true); 
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Extract breadcrumbs from current route
-  const breadcrumbItems = routes
-    .filter((route) => location.pathname.startsWith(route.path))
-    .map((route) => ({
-      key: route.path,
-      label: route.breadcrumb,
-    }));
-
-  // Simulate redirection with loader on first load
   useEffect(() => {
     if (location.pathname === '/') {
       const timer = setTimeout(() => {
@@ -47,10 +38,6 @@ const AppRoutes: React.FC = () => {
         </div>
       ) : (
         <div className="container mx-auto px-4">
-          {/* Breadcrumb */}
-          <Breadcrumb items={breadcrumbItems} />
-
-          {/* Routes */}
           <Routes>
             {routes.map((route) => (
               <Route key={route.path} path={route.path} element={route.element} />

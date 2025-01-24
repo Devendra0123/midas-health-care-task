@@ -12,27 +12,27 @@ export interface Department {
 }
 
 export interface PreviousRecord {
-  date: string; // Date of the previous record
-  department: string; // Department name
-  doctor: string; // Doctor's name
-  status: string; // Status (e.g., Follow Up, New, Free)
+  date: string;
+  department: string; 
+  doctor: string;
+  status: string;
 }
 
 export interface Patient {
-  id: number; // Unique ID for the patient
-  serialNumber: number; // Serial number
-  uhid: string; // Unique Health Identification Number
-  name: string; // Patient's name
-  age: number; // Patient's age
-  gender: 'M' | 'F'; // Gender
-  billingDateTime: string; // Billing date and time
-  department: Department; // Department object
-  doctor: Doctor; // Doctor object
-  queueNumber: number; // Queue number
-  previousRecord: boolean; // Whether the patient has previous records
-  previousRecords: PreviousRecord[]; // Array of previous records
-  status: 'Follow Up' | 'New' | 'Free'; // Patient's current status
-  urgent: boolean; // Whether the case is urgent
+  id: number;
+  serialNumber: number; 
+  uhid: string;
+  name: string; 
+  age: number; 
+  gender: 'M' | 'F'; 
+  billingDateTime: string;
+  department: Department;
+  doctor: Doctor;
+  queueNumber: number; 
+  previousRecord: boolean;
+  previousRecords: PreviousRecord[];
+  status: 'Follow Up' | 'New' | 'Free';
+  urgent: boolean;
 }
 
 export interface PreviousRecord {
@@ -43,12 +43,11 @@ export interface PreviousRecord {
 }
 
 export interface FilterState {
-  fromDate?: string; // ISO date string
-  toDate?: string; // ISO date string
-  doctorId?: number; // Doctor ID for filtering
+  fromDate?: string; 
+  toDate?: string; 
+  doctorId?: number; 
 }
  
-  // Route Configuration Type
   export interface RouteConfig {
     path: string;
     breadcrumb: string | ((params: Record<string, string>) => string); 
@@ -56,11 +55,11 @@ export interface FilterState {
   }
   
   export interface FilterState {
-    fromDate?: string; // ISO date string
-    toDate?: string;   // ISO date string
-    doctorId?: number; // Doctor ID for filtering
+    fromDate?: string;
+    toDate?: string;  
+    doctorId?: number;
   }
-  // Doctor Option Type for Select Dropdown
+
   export interface DoctorOption {
     label: string;
     value: number;

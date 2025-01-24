@@ -1,4 +1,3 @@
-import React from 'react'
 import FilterOptions from './FilterOptions'
 import { Button, Tooltip } from 'antd'
 import { ReloadOutlined } from '@ant-design/icons';

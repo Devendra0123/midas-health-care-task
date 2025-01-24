@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { DatePicker, Select, Button } from 'antd';
+import { DatePicker, Select } from 'antd';
 import { FilterState, Doctor } from '../../types';
 
 interface FilterSectionProps {
@@ -43,7 +43,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
     <>
       {
         filterOptions.length > 0 && (
-          <div className="mb-6">
+          <div className="mb-6 py-2">
             <h2 className="text-sm font-medium mb-2 text-start text-gray-500">Filters:</h2>
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:space-x-4">
 

@@ -30,24 +30,24 @@ const Toolbar: React.FC<ToolbarProps> = ({
   const [isDownloading, setIsDownloading] = useState(false);
 
   const handleDownloadClick = () => {
-    setIsModalVisible(true); // Show the modal
+    setIsModalVisible(true); 
   };
 
   const handleModalOk = () => {
-    setIsDownloading(true); // Show the loading spinner
+    setIsDownloading(true); 
     setTimeout(() => {
-      onDownload(); // Execute the download function
-      setIsDownloading(false); // Stop the loading spinner
-      setIsModalVisible(false); // Hide the modal
-    }, 2000); // 2-second delay
+      onDownload(); 
+      setIsDownloading(false); 
+      setIsModalVisible(false); 
+    }, 2000);
   };
 
   const handleModalCancel = () => {
-    setIsModalVisible(false); // Hide the modal without doing anything
+    setIsModalVisible(false); 
   };
 
   return (
-    <div className="w-full flex justify-between items-center py-2 rounded-md">
+    <div className="w-full flex justify-between items-center pt-2 pb-3 rounded-md border-b">
       <div className="flex items-center space-x-4">
         {/* Section Title */}
         <h2 className="text-lg text-teal font-bold flex items-center space-x-2">
@@ -73,7 +73,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
 
         {/* Download Excel Button */}
         <Button
-          onClick={handleDownloadClick} // Open confirmation modal
+          onClick={handleDownloadClick}
           icon={<img src="/assets/icons/excel.svg" alt="excel icon" className="w-5 h-5" />}
         >
           <span className="hidden lg:flex">Download Excel</span>
@@ -95,10 +95,10 @@ const Toolbar: React.FC<ToolbarProps> = ({
         open={isModalVisible}
         onOk={handleModalOk}
         onCancel={handleModalCancel}
-        okText={isDownloading ? <Spin size="small" className='text-white' /> : "Yes"} // Show spinner while downloading
+        okText={isDownloading ? <Spin size="small" className='text-white' /> : "Yes"} 
         cancelText="No"
-        closable={!isDownloading} // Disable closing when downloading
-        maskClosable={!isDownloading} // Disable outside clicks when downloading
+        closable={!isDownloading}
+        maskClosable={!isDownloading}
       >
         {isDownloading ? (
           <div className="flex justify-center items-center">

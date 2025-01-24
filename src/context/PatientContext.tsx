@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useCallback, useMemo } from 'react';
-import { Patient } from '../types'; // Import centralized type
+import { Patient } from '../types';
 
 interface PatientContextType {
   patients: Patient[];
@@ -14,7 +14,6 @@ export const PatientProvider: React.FC<{ children: React.ReactNode }> = ({ child
   // Add multiple patients, ensuring no duplicates
   const addPatients = useCallback((newPatients: Patient[]) => {
     setPatients((prev) => {
-      // Merge existing patients with new ones, avoiding duplicates based on ID
       const existingIds = new Set(prev.map((p) => p.id));
       const uniquePatients = newPatients.filter((p) => !existingIds.has(p.id));
       return [...prev, ...uniquePatients];
