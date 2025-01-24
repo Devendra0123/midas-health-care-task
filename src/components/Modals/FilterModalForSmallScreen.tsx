@@ -60,6 +60,7 @@ const FilterModalForSmallScreen: React.FC<FilterModalForSmallScreenProps> = ({
       });
           onResetFilters();
          } 
+        }
         setFilterOptions={setFilterOptions} />
       </div>
 
