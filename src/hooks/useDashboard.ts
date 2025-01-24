@@ -26,6 +26,12 @@ interface UseDashboardReturn {
     setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
     handleDownloadExcel: () => void;
     handleResetFilters: () => void;
+ tabCounts: {
+        'New Patients': number;
+        'Nurse Seen': number;
+        'Doctor Visited': number;
+        Appointment: number;
+    }
 }
 
 
@@ -45,7 +51,13 @@ export const useDashboard = (): UseDashboardReturn => {
     const [searchQuery, setSearchQuery] = useState('');
     const debouncedQuery = useDebounce(searchQuery, 300);
     const [filterLoading, setFilterLoading] = useState(false);
-
+    const tabCounts = {
+        'New Patients': 30,
+        'Nurse Seen': 30,
+        'Doctor Visited': 35,
+        'Appointment': 30,
+      };
+    
 
     const previousFiltersRef = useRef<FilterState>(filters);
 
@@ -69,7 +81,7 @@ export const useDashboard = (): UseDashboardReturn => {
                 default:
                     setPatients([]);
             }
-            setLoading(false);
+            setTimeout(() => setLoading(false), 700);
             setCurrentPage(1);
         }, 500);
 
@@ -188,6 +200,6 @@ export const useDashboard = (): UseDashboardReturn => {
         setSearchQuery,
         handleDownloadExcel,
         handleResetFilters,
-
+        tabCounts
     };
 };

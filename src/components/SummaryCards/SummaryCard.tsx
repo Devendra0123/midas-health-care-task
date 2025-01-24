@@ -8,15 +8,16 @@ interface SummaryCardProps {
 
 const SummaryCard: React.FC<SummaryCardProps> = React.memo(({ card }) => {
   return (
-    <div className="bg-white border border-slate-200 rounded-lg p-4 grid grid-cols-2">
+    <div
+     className="bg-white rounded-lg p-4 grid grid-cols-2 border border-slate-300 shadow-none xl:shadow-lg shadow-black/10">
       <div className='h-full flex flex-col justify-between'>
         <div className="flex items-center space-x-2">
           <Tooltip title={card.tooltip}>
-            <h3 className="text-sm font-semibold text-start text-gray-500">{card.title1}</h3>
+            <h3 className="text-sm xl:text-lg font-semibold text-start text-gray-500">{card.title1}</h3>
           </Tooltip>
         </div>
 
-        <div className="text-md font-bold mt-2 flex items-center gap-2 text-orange/75">
+        <div className="text-md xl:text-lg font-bold mt-2 flex items-center gap-2 text-orange/75">
           {card.icon1 && <card.icon1 className="text-xl text-primary " />}
           {card.value1}
         </div>
@@ -27,13 +28,13 @@ const SummaryCard: React.FC<SummaryCardProps> = React.memo(({ card }) => {
           card.title2 && (
             <div className="flex items-center space-x-2">
               <Tooltip title={card.tooltip}>
-                <h3 className="text-sm font-semibold text-start text-gray-500">{card.title2}</h3>
+                <h3 className="text-sm xl:text-lg font-semibold text-start text-gray-500">{card.title2}</h3>
               </Tooltip>
             </div>
           )
         }
 
-        <div className="text-md font-bold mt-2 flex items-center gap-2">
+        <div className="text-md xl:text-lg font-bold mt-2 flex items-center gap-2">
           {
            card.additionalInfo && (
             <Tooltip title={card.additionalInfo}>

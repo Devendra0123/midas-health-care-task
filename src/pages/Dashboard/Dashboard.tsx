@@ -1,7 +1,6 @@
 
 import React, { useRef } from 'react';
 import { Spin, Tabs } from 'antd';
-import BreadcrumbComponent from '../../components/Breadcrumb/BreadcrumbComponent';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import FilterSection from '../../components/Filters/FilterSection';
 import FilterModalForSmallScreen from '../../components/Modals/FilterModalForSmallScreen';
@@ -18,7 +17,6 @@ import { Tooltip, InputNumber } from 'antd';
 
 const Dashboard: React.FC = () => {
   const {
-    patients,
     filteredPatients,
     filters,
     setFilters,
@@ -30,10 +28,10 @@ const Dashboard: React.FC = () => {
     setPageSize,
     currentPage,
     setCurrentPage,
-    searchQuery,
     setSearchQuery,
     handleDownloadExcel,
     handleResetFilters,
+    tabCounts
   } = useDashboard();
 
   const [isFilterModalDisplaying, setIsFilterModalDisplaying] = React.useState(false);
@@ -51,21 +49,10 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  // Tab counts logic can be moved to a separate utility or within useDashboard
-  const tabCounts = {
-    'New Patients': 10,
-    'Nurse Seen': 20,
-    'Doctor Visited': 15,
-    'Appointment': 5,
-  };
-
   return (
-    <div className="relative container mx-auto md:px-4 pt-6 pb-[100px]">
+    <div className="relative container mx-auto md:px-4 pt-3 pb-[100px]">
       {/* Header Section */}
       <div className="bg-slate-100 pb-2 md:pb-4">
-        
-        {/* Breadcrumb */}
-        <BreadcrumbComponent />
 
         {/* Toolbar */}
         <Toolbar
@@ -98,7 +85,7 @@ const Dashboard: React.FC = () => {
           {filterVisible && (
             <FilterSection
               filters={filters}
-              onFilterChange={setFilters}
+              onFilterChange={handleFilterChange}
               activeTab={activeTab}
               doctors={dummyDoctors}
               filterOptions={filterOptions}
@@ -125,7 +112,7 @@ const Dashboard: React.FC = () => {
           items={(Object.keys(tabCounts) as Array<keyof typeof tabCounts>).map((tab) => ({
             key: tab,
             label: (
-              <div className={`${activeTab === tab ? 'text-white' : 'text-black'} px-2 py-1 rounded-md`}>
+              <div className={`${activeTab === tab ? 'text-white' : 'text-black'} px-2 py-1 rounded-md text-md xl:text-lg`}>
                 {`${tab} (${tabCounts[tab]})`}
               </div>
             ),

@@ -50,7 +50,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
     <div className="w-full flex justify-between items-center pt-2 pb-3 rounded-md border-b">
       <div className="flex items-center space-x-4">
         {/* Section Title */}
-        <h2 className="text-lg text-teal font-bold flex items-center space-x-2">
+        <h2 className="text-lg xl:text-xl text-teal font-bold flex items-center space-x-2">
           {titleIcon}
           <span>{title}</span>
         </h2>
@@ -64,7 +64,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
       <div className="flex space-x-2 md:space-x-4">
         {/* Toggle Filter Button */}
         <Button
-          className="hidden lg:flex"
+          className="hidden lg:flex text-md xl:text-lg"
           onClick={onToggleFilter}
           icon={filterVisible ? <LuEyeClosed /> : <EyeOutlined />}
         >
@@ -75,8 +75,9 @@ const Toolbar: React.FC<ToolbarProps> = ({
         <Button
           onClick={handleDownloadClick}
           icon={<img src="/assets/icons/excel.svg" alt="excel icon" className="w-5 h-5" />}
+          className=''
         >
-          <span className="hidden lg:flex">Download Excel</span>
+          <span className="hidden lg:flex text-md xl:text-lg">Download Excel</span>
         </Button>
 
         {/* Filter Button for Small Screen */}

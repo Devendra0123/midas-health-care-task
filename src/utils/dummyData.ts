@@ -2,9 +2,9 @@ import { Patient, Doctor, Department } from '../types';
 
 // Doctors
 export const dummyDoctors: Doctor[] = [
-  { id: 1, name: 'Dr. John Doe' },
-  { id: 2, name: 'Dr. Jane Smith' },
-  { id: 3, name: 'Dr. Emily White' },
+  { id: 1, name: 'Dr. Ram Prakash' },
+  { id: 2, name: 'Dr. Shyam Prasad' },
+  { id: 3, name: 'Dr. Abhinay Prasad' },
 ];
 
 // Departments

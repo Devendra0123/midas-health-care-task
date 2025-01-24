@@ -1,10 +1,10 @@
 import {
   UserOutlined,
   ClockCircleOutlined,
-  HomeOutlined,
-  FileOutlined,
-  ExclamationCircleOutlined,
-  InfoCircleOutlined
+  InfoCircleOutlined,
+  DisconnectOutlined ,
+  AimOutlined ,
+  BorderBottomOutlined
 } from "@ant-design/icons"
 import type { SummaryCardData } from "../types"
 
@@ -25,19 +25,19 @@ export const summaryCards: SummaryCardData[] = [
   {
     title1: "Patients in Queue",
     value1: 10,
-    icon1: HomeOutlined,
+    icon1: BorderBottomOutlined,
     title2: "Queue No.",
     value2: "11-20",
   },
   {
     title1: "Cancellations",
     value1: 2,
-    icon1: FileOutlined,
+    icon1: DisconnectOutlined,
   },
   {
     title1: "Urgent Cases",
     value1: 10,
-    icon1: ExclamationCircleOutlined,
+    icon1: AimOutlined,
     title2: "Queue No.",
     value2: "4,7,2",
   },
