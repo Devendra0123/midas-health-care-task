@@ -52,7 +52,15 @@ const FilterModalForSmallScreen: React.FC<FilterModalForSmallScreenProps> = ({
       ]}
     >
       <div className="flex items-center space-x-4">
-        <FilterOptionWithReset onResetFilters={onResetFilters} setFilterOptions={setFilterOptions} />
+        <FilterOptionWithReset onResetFilters={()=> {
+      setLocalFilters({
+         fromDate: undefined,
+            toDate: undefined,
+            doctorId: undefined,
+      });
+          onResetFilters();
+         } 
+        setFilterOptions={setFilterOptions} />
       </div>
 
       <div>
