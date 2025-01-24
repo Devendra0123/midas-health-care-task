@@ -57,7 +57,7 @@ const FilterModalForSmallScreen: React.FC<FilterModalForSmallScreenProps> = ({
 
       <div>
         <FilterSection
-          filters={filters} 
+          filters={localFilters} 
           onFilterChange={(data)=> handleFilterChange(data)} 
           activeTab={activeTab}
           doctors={doctors}
