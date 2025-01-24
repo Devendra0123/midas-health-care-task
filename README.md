@@ -13,7 +13,7 @@ A **Clinical Management Dashboard** designed for managing patient data efficient
 
 #### Filters
 - **Date-based filtering** (e.g., "From Date" and "To Date").
-- **Doctor-based filtering** with multi-select options.
+- **Doctor-based filtering**.
 - **Reset filters** to default state.
 
 #### Search
@@ -29,11 +29,9 @@ A **Clinical Management Dashboard** designed for managing patient data efficient
 - **Hierarchical navigation** with customizable breadcrumb paths.
 
 ### UI/UX Enhancements
-- **Smooth scrolling effects** for hiding/showing headers.
-- **Tab-based navigation** with sticky headers.
-- **Hover effects** on table rows for better user interaction.
-- **Summary cards** to display quick stats for each category.
-- **Toast notifications** for user actions like filtering or downloading.
+- **Smooth scrolling effects**.
+- **Hover effects**
+- **Summary cards**
 
 ## Technologies Used
 
